@@ -33,7 +33,7 @@ char *get_args(char *line, int *exe_ret)
 	return (line);
 }
 
-int call_args(char **ars, char **front, int *exe_ret)
+int call_args(char **args, char **front, int *exe_ret)
 {
 	int ret, i;
 
@@ -52,7 +52,7 @@ int call_args(char **ars, char **front, int *exe_ret)
 			if (*exe_ret != 0)
 			{
 				args = &args[++i];
-				index = 0;
+				index == 0;
 			}
 			else
 			{
@@ -61,7 +61,7 @@ int call_args(char **ars, char **front, int *exe_ret)
 				return (ret);
 			}
 		}
-		else if (__strncmp(args[i], "&&", 2) == 0)
+		else if (_strncmp(args[i], "&&", 2) == 0)
 		{
 			free(args[i]);
 			args[i] = NULL;

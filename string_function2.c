@@ -1,9 +1,17 @@
 #include "shell.h"
 
-char *_strchr(const char *str, int c);
+char *_strchr(char *str, char c);
 
+/**
+ * _strchr - Locates a character in a string.
+ * @s: The string to be searched.
+ * @c: The character to be located.
+ *
+ * Return: If c is found - a pointer to the first occurence.
+ *         If c is not found - NULL.
+ */
 
-char *_strchr(const char *str, int c)
+char *_strchr(char *str, char c)
 {
 	int i;
 

@@ -30,7 +30,7 @@ char **_copyenv(void)
 
 	for (i = 0; environ[i]; i++)
 	{
-		new_environ[i] = malloc(_strlen(environ[index]) + 1);
+		new_environ[i] = malloc(_strlen(environ[i]) + 1);
 
 		if (!new_environ[i])
 		{
@@ -51,6 +51,6 @@ void free_env(void)
 	int i;
 
 	for (i = 0; environ[i]; i++ )
-		free(environ[index]);
+		free(environ[i]);
 	free(environ);
 }
