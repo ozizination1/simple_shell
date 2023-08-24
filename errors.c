@@ -4,6 +4,13 @@ int num_len(int num);
 char *_itoa(int num);
 int create_error(char **args, int err);
 
+/**
+ * num_len - Counts the length of a number
+ * @num: number
+ *
+ * Return: Digit length
+ */
+
 int num_len(int num)
 {
 	unsigned int num1;
@@ -26,6 +33,12 @@ int num_len(int num)
 	return (len);
 }
 
+/**
+ * _itoa - Converts integer to string
+ * @num: integer
+ *
+ * Return: Converted string
+ */
 
 char *_itoa(int num)
 {
@@ -61,6 +74,13 @@ char *_itoa(int num)
 	return (buffer);
 }
 
+/**
+ * create_error - Writes error message to standard error
+ * @args: Array of arguments
+ * @err: Error value
+ *
+ * Return: err
+ */
 
 int create_error(char **args, int err)
 {

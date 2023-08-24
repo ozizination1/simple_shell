@@ -35,7 +35,7 @@ int _strcmp(const char *s1, const char *s2)
 
 /**
  * _strlen - Returns the length of a string.
- * @s: A pointer to the characters string.
+ * @str: A pointer to the characters string.
  *
  * Return: The length of the character string.
  */

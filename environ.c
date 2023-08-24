@@ -1,18 +1,30 @@
 #include "shell.h"
 
+/**
+ * _getenv - Gets an environmental variable from the PATH.
+ * @name: name of the environmental variable to get
+ *
+ * Return: On non-existence - NULL. Otherwise a pointer to the env variable
+ */
+
 char **_getenv(const char *name)
 {
 	int i, len;
 
 	len = _strlen(name);
-	for(i = 0; environ[i]; i++)
+	for (i = 0; environ[i]; i++)
 	{
 		if (_strncmp(name, environ[i], len) == 0)
-			return(environ + i);
+			return (environ + i);
 	}
-	return(NULL);
+	return (NULL);
 }
 
+/**
+ * _copyenv - Copies info to create new environment.
+ *
+ * Return: NULL on error. Double pointer to new copy
+ */
 
 char **_copyenv(void)
 {
@@ -22,7 +34,7 @@ char **_copyenv(void)
 
 	for (size = 0; environ[size]; size++)
 		;
-	
+
 	new_environ = malloc(sizeof(char *) * (size + 1));
 
 	if (!new_environ)
@@ -46,11 +58,15 @@ char **_copyenv(void)
 	return (new_environ);
 }
 
+/**
+ * free_env - Function to free environment copy
+ */
+
 void free_env(void)
 {
 	int i;
 
-	for (i = 0; environ[i]; i++ )
+	for (i = 0; environ[i]; i++)
 		free(environ[i]);
 	free(environ);
 }

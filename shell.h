@@ -87,8 +87,8 @@ char *_strcat(char *dest, const char *src);
 int _strlen(const char* str);
 char *_strchr(char *str, char c);
 char *_strncat(char *dest, const char *src, size_t n);
-int _strspn(char *s, char *accept);
-int _strncmp(const char *s1, const char *s2, size_t n);
+int _strspn(char *str, char *accept);
+int _strncmp(const char *str1, const char *str2, size_t n);
 
 /* Builtins */
 int (*get_builtin(char *command))(char **args, char **front);
@@ -130,6 +130,10 @@ void help_env(void);
 void help_setenv(void);
 void help_unsetenv(void);
 void help_history(void);
+
+char *get_pid(void);
+char *get_env_value(char *begin, int len);
+
 
 int proc_file_commands(char *file_path, int *exe_ret);
 #endif

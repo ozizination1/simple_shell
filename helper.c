@@ -2,8 +2,14 @@
 
 void free_args(char **args, char **front);
 char *get_pid(void);
-char *get_env_value(char *beginning, int len);
+char *get_env_value(char *begin, int len);
 void variable_replacement(char **args, int *exe_ret);
+
+/**
+ * free_args - 'Free' memory taken by args
+ * @args: Array of arguments
+ * @front: Pointer to beginning of args
+ */
 
 void free_args(char **args, char **front)
 {
@@ -15,6 +21,11 @@ void free_args(char **args, char **front)
 	free(front);
 }
 
+/**
+ * get_pid - To get the current PID
+ *
+ * Return: Current PID. NULL on failure
+ */
 
 char *get_pid(void)
 {
@@ -43,9 +54,15 @@ char *get_pid(void)
 	return (buffer);
 }
 
+/**
+ * get_env_value - Get value of an env variable
+ * @begin: Env variable to be searched for
+ * @len: Env variable length
+ *
+ * Return: NULL if not found. Value of Env var if found
+ */
 
-
-char *get_env_value(char *beginning, int len)
+char *get_env_value(char *begin, int len)
 {
 	char **var_addr;
 	char *replacement = NULL, *temp, *var;
@@ -55,7 +72,7 @@ char *get_env_value(char *beginning, int len)
 		return (NULL);
 
 	var[0] = '\0';
-	_strncat(var, beginning, len);
+	_strncat(var, begin, len);
 
 	var_addr = _getenv(var);
 	free(var);
@@ -72,7 +89,12 @@ char *get_env_value(char *beginning, int len)
 	return (replacement);
 }
 
-
+/**
+ * variable_replacement - For variable_replacement
+ * @line: pointer to command and arguments
+ * @exe_ret: pointer to return value of last executed command
+ *
+ */
 void variable_replacement(char **line, int *exe_ret)
 {
 	int j, k = 0, len;

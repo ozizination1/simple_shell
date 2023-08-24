@@ -6,6 +6,15 @@ int run_args(char **args, char **front, int *exe_ret);
 int handle_args(int *exe_ret);
 int check_args(char **args);
 
+/**
+ * get_args - To get a command frim STDIN
+ * @line: buffer to store command
+ * @exe_ret: The return value of the last executed command.
+ *
+ * Return: NULL on erroe, elsepointer to the stored command
+ */
+
+
 char *get_args(char *line, int *exe_ret)
 {
 	size_t n = 0;
@@ -32,6 +41,15 @@ char *get_args(char *line, int *exe_ret)
 
 	return (line);
 }
+
+/**
+ * call_args - Segregates operators from commands and invokes the commands.
+ * @args: Array of arguments
+ * @front: Pointer to array beginning
+ * @exe_ret: The return value of the last executed command
+ *
+ * Return: exe_ret
+ */
 
 int call_args(char **args, char **front, int *exe_ret)
 {
@@ -85,6 +103,15 @@ int call_args(char **args, char **front, int *exe_ret)
 	return (ret);
 }
 
+/**
+ * run_args - Function that executes a command
+ * @args: Array of arguments
+ * @front: Pointer to array beginning
+ * @exe_ret: The return value of the last executed command
+ *
+ * Return: exe_ret
+ */
+
 int run_args(char **args, char **front, int *exe_ret)
 {
 	int ret, i;
@@ -110,6 +137,15 @@ int run_args(char **args, char **front, int *exe_ret)
 
 	return (ret);
 }
+
+/**
+ * handle_args - Gets, calls, and runs the execution of a command.
+ * @exe_ret: The return value of the parent process' last executed command.
+ *
+ * Return: If an end-of-file is read - END_OF_FILE (-2).
+ * If the input cannot be tokenized - -1.
+ * O/w - The exit value of the last executed command.
+ */
 
 int handle_args(int *exe_ret)
 {
@@ -151,7 +187,12 @@ int handle_args(int *exe_ret)
 		return (ret);
 }
 
-
+/**
+ * check_args - Checks if there are any leading ';', ';;', '&&', or '||'.
+ * @args: Pointer to tokenized commands and arguments.
+ *
+ * Return: If symbols are placed at an invalid position - 2. Otherwise, 0
+ */
 int check_args(char **args)
 {
 	size_t i;
