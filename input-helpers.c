@@ -52,7 +52,7 @@ int call_args(char **args, char **front, int *exe_ret)
 			if (*exe_ret != 0)
 			{
 				args = &args[++i];
-				index == 0;
+				i = 0;
 			}
 			else
 			{

@@ -1,6 +1,6 @@
 #include "shell.h"
 
-char _getenv(const char *name)
+char **_getenv(const char *name)
 {
 	int i, len;
 
@@ -10,7 +10,7 @@ char _getenv(const char *name)
 		if (_strncmp(name, environ[i], len) == 0)
 			return(environ + i);
 	}
-	return( NULL);
+	return(NULL);
 }
 
 

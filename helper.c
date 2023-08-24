@@ -16,7 +16,7 @@ void free_args(char **args, char **front)
 }
 
 
-char *get_pid(void);
+char *get_pid(void)
 {
 	size_t i = 0;
 	char *buffer;
@@ -73,52 +73,52 @@ char *get_env_value(char *beginning, int len)
 }
 
 
-void variable_replacement(char **args, int *exe_ret)
+void variable_replacement(char **line, int *exe_ret)
 {
 	int j, k = 0, len;
-	char *replacement = NULL, *old_line = NULL, *new_line;
+	char *replacement = NULL, *o_line = NULL, *n_line;
 
-	old_line = *line;
-	for (j = 0; old_line[j]; j++)
+	o_line = *line;
+	for (j = 0; o_line[j]; j++)
 	{
-		if (old_line[j] == '$' && old_line[j + 1]
-				&& old_line[j + 1] != ' ')
+		if (o_line[j] == '$' && o_line[j + 1]
+				&& o_line[j + 1] != ' ')
 		{
-			if (old_line[j + 1] == '$')
+			if (o_line[j + 1] == '$')
 			{
 				replacement = get_pid();
 				k = j + 2;
 			}
-			else if (old_line[j + 1] == '?')
+			else if (o_line[j + 1] == '?')
 			{
 				replacement = _itoa(*exe_ret);
 				k = j + 2;
 			}
-			else if (old_line[j + 1])
+			else if (o_line[j + 1])
 			{
-				for (k = j + 1; old_line[k] && old_line[k]
-						!= '$' && old_line[k] != ' '; k++)
+				for (k = j + 1; o_line[k] && o_line[k]
+						!= '$' && o_line[k] != ' '; k++)
 					;
 
 				len = k - (j + 1);
-				replacement = get_env_value(&old_line[j + 1], len);
+				replacement = get_env_value(&o_line[j + 1], len);
 			}
-			new_line = malloc(j + _strlen(replacement) + _strlen(&old_line[k]) + 1);
+			n_line = malloc(j + _strlen(replacement) + _strlen(&o_line[k]) + 1);
 
 			if (!line)
 				return;
-			new_line[0] = '\0;
-			_strncat(new_line, old_line, j);
+			n_line[0] = '\0';
+			_strncat(n_line, o_line, j);
 			if (replacement)
 			{
-				_strncat(new_line, replacement);
+				_strcat(n_line, replacement);
 				free(replacement);
 				replacement = NULL;
 			}
-			_strncat(new_line, &old_line[k]);
-			free(old_line);
-			*line = new_line;
-			old_line = new_line;
+			_strcat(n_line, &o_line[k]);
+			free(o_line);
+			*line = n_line;
+			o_line = n_line;
 			j = -1;
 		}
 	}

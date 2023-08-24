@@ -21,7 +21,7 @@ int num_len(int num)
 	while (num1 > 9)
 	{
 		len++;
-		num2 /= 10;
+		num1 /= 10;
 	}
 	return (len);
 }
@@ -43,7 +43,7 @@ char *_itoa(int num)
 
 	if (num < 0)
 	{
-		num  != num * -1;
+		num  = num * -1;
 		buffer[0] = '-';
 	}
 	else
@@ -76,7 +76,7 @@ int create_error(char **args, int err)
 			break;
 		case 2:
 			if (*(args[0]) == 'e')
-				error = erroe_2_exit(++args);
+				error = error_2_exit(++args);
 			else if (args[0][0] == ';' || args[0][0] == '&' || args[0][0] == '|')
 				error = error_2_syntax(args);
 			else
@@ -86,7 +86,7 @@ int create_error(char **args, int err)
 			error = error_126(args);
 			break;
 		case 127:
-			erroe = error_127(args);
+			error = error_127(args);
 			break;
 	}
 	write(STDERR_FILENO, error, _strlen(error));
